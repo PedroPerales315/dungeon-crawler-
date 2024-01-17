@@ -2,7 +2,8 @@
     "name": "Dungeon Crawler ",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "controller": "*"
     },
     "files": [
         "main.blocks",
