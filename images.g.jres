@@ -39,6 +39,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Jazz guy0"
     },
+    "image8": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAFAAAAAAAAAAUAAAAAAABQBQAAAAAAAAAFAAAAAAAAAAUAAAAAAAAABQAAAAAAAFBVAAAAAAAABQkFAAAAAACVmQUAAAAAAAUJBQAAAAAAUFUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myImage"
+    },
     "anim2": {
         "namespace": "myAnimations",
         "id": "anim2",

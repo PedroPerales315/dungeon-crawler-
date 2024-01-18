@@ -3,6 +3,14 @@ namespace SpriteKind {
     export const Sword = SpriteKind.create()
     export const bullet = SpriteKind.create()
 }
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    lastDirection = 0
+    walk()
+})
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    attack()
+    shoot()
+})
 // 0 - up
 // 
 // 1 - right
@@ -41,8 +49,8 @@ function walk () {
         )
     }
 }
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    lastDirection = 0
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    lastDirection = 2
     walk()
 })
 // 0 - up
@@ -83,6 +91,15 @@ function attack () {
         )
     }
 }
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    lastDirection = 3
+    walk()
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile50`, function (sprite, location) {
+    if (Dungeon_Rap == 1) {
+        tiles.setCurrentTilemap(tilemap`level`)
+    }
+})
 function shoot () {
     if (lastDirection == 0) {
         projectile = sprites.createProjectileFromSprite(img`
@@ -166,29 +183,24 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     lastDirection = 1
     walk()
 })
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    attack()
-    shoot()
-})
-controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    lastDirection = 3
-    walk()
-})
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    lastDirection = 2
-    walk()
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite)
+    Dungeon_Rap = Dungeon_Rap + 1
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(otherSprite)
 })
 let moving = false
 let projectile: Sprite = null
+let Dungeon_Rap = 0
 let lastDirection = 0
 let Emily: Sprite = null
 tiles.setCurrentTilemap(tilemap`level6`)
 Emily = sprites.create(assets.image`Emily`, SpriteKind.Player)
 controller.moveSprite(Emily, 100, 100)
+let Key = sprites.create(assets.image`myImage`, SpriteKind.Food)
 scene.cameraFollowSprite(Emily)
+Key.setPosition(randint(10, 140), randint(10, 100))
 game.onUpdate(function () {
     moving = controller.left.isPressed() || (controller.right.isPressed() || (controller.up.isPressed() || (controller.down.isPressed() || controller.A.isPressed())))
     if (!(moving)) {
