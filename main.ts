@@ -8,9 +8,6 @@ sprites.onCreated(SpriteKind.Enemy, function (sprite) {
     sprite.setPosition(randint(10, 160), randint(10, 200))
     sprite.setVelocity(randint(-100, 100), randint(-100, 100))
 })
-controller.combos.attachCombo("uldrba", function () {
-    Super()
-})
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     lastDirection = 0
     walk()
@@ -195,6 +192,9 @@ function shoot () {
             `, Emily, 250, 0)
     }
 }
+controller.combos.attachCombo("bb", function () {
+    Super()
+})
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     lastDirection = 1
     walk()
